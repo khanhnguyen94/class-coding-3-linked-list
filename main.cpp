@@ -17,6 +17,9 @@ struct Node {
  */
 void initNode(struct Node *head, int n) {
   //TODO: Initiliaze the node data to n and the next pointer to..?
+  //Nehemya McCarter-Ribakoff
+  head->data = n;
+  head->next = NULL;
 }
 
 /**
@@ -25,7 +28,7 @@ void initNode(struct Node *head, int n) {
  * @param n - data that the new node should hold
  */
 void addNode(struct Node *head, int n) {
-  //TODO - Implement this function.
+  //TODO - Implement this function
 }
 
 /**
@@ -43,6 +46,12 @@ void insertFront(struct Node **head, int n) {
  */
 void display(struct Node *head) {
   //TODO
+  // Nehemya McCarter-Ribakoff
+  Node* current = head;
+  while (current != NULL) {
+    std::cout << "current->data: " << current->data;
+    current = current->next;
+  }
 }
 
 /**
@@ -130,10 +139,10 @@ int main() {
   struct Node *newHead;
   struct Node *head = new Node;
 
-  /*
+
   initNode(head,10);
   display(head);
-
+  /*
   addNode(head,20);
   display(head);
 
