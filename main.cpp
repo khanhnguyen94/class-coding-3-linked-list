@@ -29,6 +29,16 @@ void initNode(struct Node *head, int n) {
  */
 void addNode(struct Node *head, int n) {
   //TODO - Implement this function
+    Node *current = head;
+
+     while(current->next){
+        current = current->next;
+    }
+    Node *last = new Node;
+    current->next = last;
+    last->data = n;
+  //  std::cout << last->data << "\n";
+    last->next = NULL;
 }
 
 /**
@@ -49,9 +59,10 @@ void display(struct Node *head) {
   // Nehemya McCarter-Ribakoff
   Node* current = head;
   while (current != NULL) {
-    std::cout << "current->data: " << current->data;
+    std::cout << "current->data: " << current->data << "\n" ;
     current = current->next;
   }
+    std::cout << "\n";
 }
 
 /**
@@ -142,7 +153,7 @@ int main() {
 
   initNode(head,10);
   display(head);
-  /*
+
   addNode(head,20);
   display(head);
 
@@ -155,6 +166,7 @@ int main() {
   addNode(head,40);
   display(head);
 
+/*
   insertFront(&head,5);
   display(head);
 
