@@ -103,17 +103,35 @@ struct Node *searchNode(struct Node *head, int n) {
  */
 bool deleteNode(struct Node **head, Node *ptrDel) {
   //TODO
- Node *current = *head;
-    if (current->next = ptrDel)
-    {
-        current->next = ptrDel->next;
-        delete ptrDel;
-        return true;
-    }
-    if (current=current->next)
-    {
-        return false;
+  Node* prev = new Node;
+  prev->next = *head;
+  Node* target = new Node;
+  bool found = false;
 
+  if ((*head == ptrDel) && (prev->next == NULL)) { //when there's only 1 node "head" in LL
+    head = NULL;
+    found = true;
+    cout << "inside head=ptrDel" << "\n";
+  } else {
+    cout << "inside else" << "\n";
+    while ((prev->next != NULL) && (prev->next != ptrDel)) {
+      prev = prev->next;
+      cout << "inside while: " << prev->data <<"\n";
+    }
+
+    target = prev->next;
+    cout << "target = prev->next, target=" << target->data << " found="<<  found << "\n";
+
+    prev->next = prev->next->next;
+    cout << "prev->next = prev->next->next ===>>>> " << prev->next->data << "\n";
+    cout << "prev=" << prev->data << "\n";
+
+    target = NULL;
+
+    found = true;
+    cout << "done while, found=" <<found << "\n\n";
+  }
+  return found;
 }
 
 /* reverse the list */
