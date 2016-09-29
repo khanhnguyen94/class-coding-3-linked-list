@@ -47,7 +47,19 @@ void addNode(struct Node *head, int n) {
  * @param n - data that the new node should hold
  */
 void insertFront(struct Node **head, int n) {
-  //TODO
+
+
+  //TODO i have to check wheather where *head then point that to new node and make that new node to point to head
+    Node *x = new Node;
+   // Node *temp = new Node;
+    if(*head != nullptr){
+        x->next = *head;
+        x->data = n;
+        *head = x;
+
+
+    }
+
 }
 
 /**
@@ -166,10 +178,10 @@ int main() {
   addNode(head,40);
   display(head);
 
-/*
+
   insertFront(&head,5);
   display(head);
-
+/*
   int numDel = 5;
   Node *ptrDelete = searchNode(head,numDel);
   if(deleteNode(&head,ptrDelete))
