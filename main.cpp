@@ -48,16 +48,13 @@ void addNode(struct Node *head, int n) {
  */
 void insertFront(struct Node **head, int n) {
 
-
-  //TODO i have to check wheather where *head then point that to new node and make that new node to point to head
+  //TODO i have to check whether where *head then point that to new node and make that new node to point to head
     Node *x = new Node;
    // Node *temp = new Node;
     if(*head != nullptr){
         x->next = *head;
         x->data = n;
         *head = x;
-
-
     }
 
 }
@@ -85,7 +82,17 @@ void display(struct Node *head) {
  */
 struct Node *searchNode(struct Node *head, int n) {
   //TODO
-  return NULL;
+  Node* current = new Node;
+  current = head;
+  bool found = false;
+  while ((current!= NULL) && (found==false)) {
+    if (current->data == n) {
+      found = true;
+    } else {
+      current = current->next;
+    }
+  }
+  return current;
 }
 
 /**
@@ -181,13 +188,14 @@ int main() {
 
   insertFront(&head,5);
   display(head);
-/*
+
   int numDel = 5;
   Node *ptrDelete = searchNode(head,numDel);
+  //cout << "Search works: ptrDelete->data=" <<ptrDelete->data << "\n";
   if(deleteNode(&head,ptrDelete))
       cout << "Node "<< numDel << " deleted!\n";
   display(head);
-
+/*
   cout << "The list is reversed\n";
   reverse(&head);
   display(head);
