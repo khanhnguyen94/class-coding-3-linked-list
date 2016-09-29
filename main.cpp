@@ -92,7 +92,11 @@ struct Node *searchNode(struct Node *head, int n) {
       current = current->next;
     }
   }
+  if (current == NULL) {
+    cout << n << " is not found!\n\n";
+  }
   return current;
+
 }
 
 /**
@@ -103,35 +107,23 @@ struct Node *searchNode(struct Node *head, int n) {
  */
 bool deleteNode(struct Node **head, Node *ptrDel) {
   //TODO
-  Node* prev = new Node;
-  prev->next = *head;
-  Node* target = new Node;
-  bool found = false;
-
-  if ((*head == ptrDel) && (prev->next == NULL)) { //when there's only 1 node "head" in LL
-    head = NULL;
-    found = true;
-    cout << "inside head=ptrDel" << "\n";
-  } else {
-    cout << "inside else" << "\n";
-    while ((prev->next != NULL) && (prev->next != ptrDel)) {
-      prev = prev->next;
-      cout << "inside while: " << prev->data <<"\n";
-    }
-
-    target = prev->next;
-    cout << "target = prev->next, target=" << target->data << " found="<<  found << "\n";
-
-    prev->next = prev->next->next;
-    cout << "prev->next = prev->next->next ===>>>> " << prev->next->data << "\n";
-    cout << "prev=" << prev->data << "\n";
-
-    target = NULL;
-
-    found = true;
-    cout << "done while, found=" <<found << "\n\n";
+  Node *current = *head;
+  if (current == ptrDel) { // case 1: ptrDel is head
+    *head = current->next;
+    delete ptrDel;
+    return true;
   }
-  return found;
+  else {                   // case 2: ptrDel is not head
+    while (current->next != ptrDel && current->next != NULL) {
+      current = current->next;
+    }
+    if (!current->next) //end of list -- ptrDel not found
+      return false;
+    current->next = current->next->next; //skip over ptrDel
+    delete ptrDel; //goodbyeeee :(
+    return true;
+  }
+
 }
 
 /* reverse the list */
@@ -217,13 +209,15 @@ int main() {
   insertFront(&head,5);
   display(head);
 
+  int numFind = 19;
+  Node *ptrFind = searchNode(head,numFind);
+
   int numDel = 5;
   Node *ptrDelete = searchNode(head,numDel);
-  //cout << "Search works: ptrDelete->data=" <<ptrDelete->data << "\n";
   if(deleteNode(&head,ptrDelete))
       cout << "Node "<< numDel << " deleted!\n";
   display(head);
-/*
+
   cout << "The list is reversed\n";
   reverse(&head);
   display(head);
@@ -258,6 +252,6 @@ int main() {
   cout << "Deleting the copied list\n";
   deleteLinkedList(&newHead);
   display(newHead);
-   */
+
   return 0;
 }
