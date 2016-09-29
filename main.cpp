@@ -103,7 +103,17 @@ struct Node *searchNode(struct Node *head, int n) {
  */
 bool deleteNode(struct Node **head, Node *ptrDel) {
   //TODO
-  return false;
+ Node *current = *head;
+    if (current->next = ptrDel)
+    {
+        current->next = ptrDel->next;
+        delete ptrDel;
+        return true;
+    }
+    if (current=current->next)
+    {
+        return false;
+
 }
 
 /* reverse the list */
